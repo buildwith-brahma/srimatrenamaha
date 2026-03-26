@@ -282,36 +282,52 @@
     border-bottom: 1px solid rgba(200,148,26,0.35);
     padding-bottom: 7px;
   }
-  .schedule-item {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 6px 10px;
-    border-bottom: 1px solid rgba(200,148,26,0.12);
-  }
+  schedule-item {
+  display: flex;
+  flex-direction: column;  /* stack vertically */
+  align-items: flex-start; /* align event name and time to left */
+  padding: 6px 10px;
+  border-bottom: 1px solid rgba(200,148,26,0.12);
+}
+
+.event-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Noto Sans Telugu', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff0cc;
+  white-space: nowrap;
+  justify-content: center;
+}
+
+.event-time {
+  display: flex;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: #ffd700;
+  background: rgba(200,148,26,0.18);
+  border: 1px solid rgba(200,148,26,0.4);
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+  text-shadow: 0 0 7px rgba(255,215,0,0.4);
+  margin-top: 4px;  /* small gap below event name */
+  align-self: flex-start; /* align time to left */
+}
   .schedule-item:last-child { border-bottom: none; }
   .schedule-item:nth-child(odd) { background: rgba(200,148,26,0.05); }
 
-  .event-name {
-    font-family: 'Noto Sans Telugu', sans-serif;
-    font-size: 14px; font-weight: 600;
-    color: #fff0cc;
-    display: flex; align-items: center; gap: 8px;
-  }
   .event-icon { font-size: 15px; }
-
-  .event-time {
-    font-family: 'Cinzel', serif;
-    font-size: 12px; color: #ffd700;
-    background: rgba(200,148,26,0.18);
-    border: 1px solid rgba(200,148,26,0.4);
-    padding: 3px 9px; border-radius: 20px;
-    white-space: nowrap;
-    text-shadow: 0 0 7px rgba(255,215,0,0.4);
-  }
 
   .homam-highlight {
     background: rgba(139,0,0,0.35) !important;
     border: 1px solid rgba(255,100,0,0.25);
     border-radius: 4px; margin: 2px 0;
+    margin: 10px 0 10px 0 !important;
+    padding: 10px;
   }
   .homam-highlight .event-name { color: #ffd700; font-size: 15px; }
   .homam-highlight .event-time { background: rgba(255,80,0,0.28); border-color: rgba(255,80,0,0.5); color: #ff9933; }
@@ -335,30 +351,40 @@
     letter-spacing: 1px; margin-top: 3px;
   }
 
-  /* Footer */
-  .footer { text-align: center; margin: 4px 0 30px; }
-  .footer-label {
-    font-family: 'Noto Sans Telugu', sans-serif;
-    font-size: 13px; color: #ffd700;
-    text-shadow: 0 0 10px rgba(255,215,0,0.4);
-  }
-  .footer-committee-te {
-    font-family: 'Noto Sans Telugu', sans-serif;
-    font-size: 16px; font-weight: 700;
-    color: #ffd700; margin: 3px 0;
-    text-shadow: 0 0 14px rgba(255,215,0,0.5);
-  }
-  .footer-committee-en {
-    font-family: 'Cinzel', serif;
-    font-size: 11px; color: #ffed80;
-    letter-spacing: 2px; opacity: 0.8;
-  }
-  .footer-symbols { margin-top: 7px; font-size: 17px; }
+  .footer {
+  text-align: center;
+  margin: 4px 0 30px;
+}
+
+.footer-label {
+  font-family: 'Noto Sans Telugu', sans-serif;
+  font-size: 13px;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6); /* stronger glow */
+}
+
+.footer-committee-te {
+  font-family: 'Noto Sans Telugu', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffd700;
+  margin: 3px 0;
+  text-shadow: 0 0 14px rgba(255, 215, 0, 0.7); /* stronger glow */
+  letter-spacing: 1.2px; /* slight letter spacing for clarity */
+}
+
+.footer-symbols {
+  margin-top: 7px;
+  font-size: 20px; /* slightly bigger symbols */
+  letter-spacing: 15px; /* spacing between emojis */
+  color: #ffb6c1; /* pinkish tint like your flower/trident emojis */
+  user-select: none; /* prevent highlight */
+  text-shadow: 0 0 8px rgba(255, 182, 193, 0.7); /* subtle glow */
+}
 </style>
 </head>
 <body>
 <div class="poster">
-
   <div class="om-bg" aria-hidden="true">
     ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ
     ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ
@@ -444,13 +470,12 @@
   <div class="spark" style="top:72%; left:18%; animation-delay:0.5s;"></div>
 
   <div class="content">
-
-    <div class="header-om">ॐ &nbsp; శ్రీ మాత్రే నమః &nbsp; ॐ</div>
+    <div class="header-om" style="margin-top: 16px;">ॐ &nbsp; శ్రీ మాత్రే నమః &nbsp; ॐ</div>
     <div class="diya-row">🪔🌺🪔🌺🪔🌺🪔🌺🪔</div>
     <div class="divider"></div>
 
     <div class="temple-name-te">శ్రీ శ్రీ శ్రీ అంకాలమ్మ తల్లి దేవస్థానం</div>
-    <div class="temple-location">Kambhalapadu</div>
+    <div class="temple-location">కంభాలపాడు</div>
     <div class="divider"></div>
 
     <!-- Divine SVG centerpiece (no photo) -->
@@ -510,8 +535,7 @@
     <div class="homam-visual">
       <div class="flame-icon">🔥</div>
       <div class="homam-label">
-        <div class="te">మహా చండీహోమం</div>
-        <div class="en">GRAND CHANDIHOMAM</div>
+        <div class="te">మహా చండీహోమం ఆహ్వానం</div>
       </div>
       <div class="flame-icon">🔥</div>
     </div>
@@ -519,18 +543,18 @@
     <div class="invitation-badge">
       <div class="invitation-te">
         మహా వైభవంగా చండీహోమం నిర్వహణకు<br>
-        <span class="invitation-sub">మీకు సాదర స్వాగతం 🙏</span>
+        <span class="invitation-sub">మీకు సాదర స్వాగతం</span>
       </div>
     </div>
 
-    <div class="date-badge">
-      <span>📅</span>
-      <span class="date-text">29th March 2026 — Sunday</span>
-      <span>🪔</span>
+    <div class="date-badge"
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <span class="date-text">29th March 2026</span>
+        <span class="date-text">Sunday</span>
     </div>
 
     <div class="schedule-section">
-      <div class="schedule-title">🕉️ కార్యక్రమ వివరాలు — Programme Schedule 🕉️</div>
+      <div class="schedule-title">🕉️ కార్యక్రమ వివరాలు 🕉️</div>
       <div class="schedule-item">
         <div class="event-name"><span class="event-icon">🐘</span> గణపతి పూజ</div>
         <div class="event-time">8:00 AM</div>
@@ -541,11 +565,11 @@
       </div>
       <div class="schedule-item homam-highlight">
         <div class="event-name"><span class="event-icon">🔥</span> చండీహోమం</div>
-        <div class="event-time">9:00 AM – 1:00 PM</div>
+        <div class="event-time">9:00 AM - 1:00 PM</div>
       </div>
       <div class="schedule-item">
         <div class="event-name"><span class="event-icon">🪔</span> పంచహారతులు</div>
-        <div class="event-time">1:00 PM – 1:30 PM</div>
+        <div class="event-time">1:00 PM - 1:30 PM</div>
       </div>
       <div class="schedule-item">
         <div class="event-name"><span class="event-icon">🍱</span> అన్నసంతర్పణ</div>
@@ -559,7 +583,7 @@
 
     <div class="blessing-box">
       <div class="blessing-te">
-        🙏 భక్తులందరూ కుటుంబ సమేతంగా విచ్చేసి అమ్మవారి ఆశీస్సులు పొందగలరు 🙏
+        🙏 భక్తులందరూ కుటుంబ 🙏<br/>సమేతంగా విచ్చేసి అమ్మవారి<br/>ఆశీస్సులు పొందగలరు
       </div>
       <div class="blessing-en">All devotees are cordially invited with their families</div>
     </div>
@@ -569,7 +593,6 @@
     <div class="footer">
       <div class="footer-label">ఆహ్వానితులు:</div>
       <div class="footer-committee-te">దేవస్థానం కమిటీ సభ్యులు</div>
-      <div class="footer-committee-en">DEVASTHANAM COMMITTEE MEMBERS</div>
       <div class="footer-symbols">🌸 🔱 🌸 🔱 🌸</div>
     </div>
 

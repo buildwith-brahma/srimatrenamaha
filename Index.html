@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chandihomam Poster - Sri Ankalamma Thalli Temple</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Noto+Sans+Telugu:wght@300;400;600;700;800&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0005;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px 0;
+    font-family: 'Noto Sans Telugu', sans-serif;
+  }
+
+  .poster {
+    width: 800px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg,
+      #12000a 0%, #2d0015 8%, #7a0008 28%,
+      #a00010 50%, #7a0008 72%, #2d0015 92%, #12000a 100%
+    );
+    border: 4px solid #c8941a;
+    box-shadow:
+      0 0 0 8px #6b1a00,
+      0 0 0 12px #c8941a,
+      0 0 60px rgba(200,148,26,0.6),
+      0 0 120px rgba(200,148,26,0.3);
+  }
+
+  .fire-container {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 160px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .flame {
+    position: absolute; bottom: 0; width: 5px;
+    border-radius: 50% 50% 20% 20%;
+    animation: flicker 1.5s ease-in-out infinite alternate;
+    opacity: 0.6;
+  }
+  @keyframes flicker {
+    0%   { transform: scaleY(1)   scaleX(1)   rotate(-2deg); opacity: 0.6; }
+    100% { transform: scaleY(1.4) scaleX(0.8) rotate(3deg);  opacity: 1; }
+  }
+
+  .corner { position: absolute; width: 110px; height: 110px; z-index: 10; }
+  .corner svg { width: 100%; height: 100%; }
+  .corner-tl { top: 8px;  left: 8px; }
+  .corner-tr { top: 8px;  right: 8px;  transform: scaleX(-1); }
+  .corner-bl { bottom: 8px; left: 8px;  transform: scaleY(-1); }
+  .corner-br { bottom: 8px; right: 8px; transform: scale(-1,-1); }
+
+  .gold-line {
+    position: absolute; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg,
+      transparent 0%, #c8941a 8%, #ffd700 30%, #ffed80 50%, #ffd700 70%, #c8941a 92%, transparent 100%
+    );
+    z-index: 10;
+  }
+  .gold-line-top    { top: 18px; }
+  .gold-line-bottom { bottom: 18px; }
+
+  .om-bg {
+    position: absolute; inset: 0;
+    display: flex; flex-wrap: wrap;
+    opacity: 0.035; pointer-events: none; z-index: 0;
+    font-size: 56px; color: #ffd700;
+    align-content: flex-start; gap: 28px; padding: 8px;
+  }
+
+  .mandala-bg {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 680px; height: 680px;
+    opacity: 0.055;
+    animation: rotateSlow 60s linear infinite;
+    pointer-events: none; z-index: 0;
+  }
+  @keyframes rotateSlow {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .petal {
+    position: absolute; font-size: 13px;
+    animation: fall 7s linear infinite;
+    opacity: 0.7; z-index: 6;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(-20px) rotate(0deg);    opacity: 0.8; }
+    100% { transform: translateY(1300px) rotate(720deg); opacity: 0; }
+  }
+
+  .spark {
+    position: absolute; width: 3px; height: 3px;
+    border-radius: 50%; background: #ffd700;
+    pointer-events: none; z-index: 7;
+    animation: sparkle 3s ease-in-out infinite;
+  }
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50%       { opacity: 1; transform: scale(1); }
+  }
+
+  /* ─── CONTENT ─── */
+  .content {
+    position: relative; z-index: 5;
+    padding: 28px 36px 28px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 0;
+    width: 100%;
+  }
+
+  .header-om {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 15px;
+    color: #ffd700;
+    letter-spacing: 6px;
+    text-align: center;
+    text-shadow: 0 0 18px rgba(255,215,0,0.8), 0 0 36px rgba(255,100,0,0.4);
+    margin-top: 34px;
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { text-shadow: 0 0 18px rgba(255,215,0,0.8), 0 0 36px rgba(255,100,0,0.4); }
+    50%       { text-shadow: 0 0 28px rgba(255,215,0,1),   0 0 55px rgba(255,100,0,0.7); }
+  }
+
+  .diya-row {
+    font-size: 18px; text-align: center; margin: 6px 0;
+    animation: glow-diya 2s ease-in-out infinite alternate;
+  }
+  @keyframes glow-diya {
+    from { filter: drop-shadow(0 0 4px #ffd700); }
+    to   { filter: drop-shadow(0 0 10px #ff6600); }
+  }
+
+  .divider {
+    width: 88%; height: 2px;
+    background: linear-gradient(90deg,
+      transparent, #c8941a, #ffd700, #ffed80, #ffd700, #c8941a, transparent
+    );
+    margin: 8px 0; position: relative;
+  }
+  .divider::after {
+    content: '✦';
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffd700; font-size: 14px;
+    background: #6b0a00; padding: 0 8px;
+  }
+
+  .temple-name-te {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 25px; font-weight: 800;
+    color: #ffd700; text-align: center;
+    text-shadow: 0 0 18px rgba(255,215,0,0.9), 2px 2px 4px rgba(0,0,0,0.8);
+    line-height: 1.45; margin: 4px 0 2px;
+    width: 100%;
+  }
+
+  .temple-location {
+    font-family: 'Cinzel', serif;
+    font-size: 14px; color: #ffed80;
+    text-align: center; letter-spacing: 5px;
+    text-shadow: 0 0 12px rgba(255,215,0,0.6);
+    margin-bottom: 4px;
+  }
+
+  /* Divine SVG symbol */
+  .divine-symbol {
+    position: relative;
+    width: 230px; height: 230px;
+    margin: 6px auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .divine-symbol .aura {
+    position: absolute; inset: -18px; border-radius: 50%;
+    background: radial-gradient(ellipse at center,
+      rgba(255,200,50,0.28) 0%, rgba(255,100,0,0.1) 45%, transparent 70%
+    );
+    animation: aura-pulse 4s ease-in-out infinite;
+  }
+  @keyframes aura-pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.06); }
+  }
+  .divine-symbol svg {
+    width: 100%; height: 100%;
+    animation: symbol-glow 4s ease-in-out infinite;
+  }
+  @keyframes symbol-glow {
+    0%, 100% { filter: drop-shadow(0 0 12px rgba(255,215,0,0.6)); }
+    50%       { filter: drop-shadow(0 0 28px rgba(255,215,0,1)); }
+  }
+
+  /* Homam strip */
+  .homam-visual {
+    display: flex; justify-content: center; align-items: center;
+    gap: 16px; margin: 4px 0; width: 100%;
+  }
+  .flame-icon {
+    font-size: 26px;
+    animation: flame-dance 1s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 7px rgba(255,100,0,0.8));
+  }
+  @keyframes flame-dance {
+    from { transform: scale(1)    rotate(-3deg); }
+    to   { transform: scale(1.15) rotate(3deg); }
+  }
+  .homam-label { text-align: center; }
+  .homam-label .te {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 19px; font-weight: 700;
+    color: #ff9933;
+    text-shadow: 0 0 14px rgba(255,100,0,0.8);
+  }
+  .homam-label .en {
+    font-family: 'Cinzel', serif;
+    font-size: 11px; color: #ffaa44;
+    letter-spacing: 3px; margin-top: 2px;
+  }
+
+  /* Invitation */
+  .invitation-badge {
+    background: linear-gradient(135deg, #7a0000, #b00008, #7a0000);
+    border: 2px solid #ffd700; border-radius: 4px;
+    padding: 8px 32px; margin: 6px 0;
+    text-align: center; width: 88%;
+    position: relative;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,215,0,0.3);
+  }
+  .invitation-badge::before { content: '✦'; position: absolute; left: 10px;  top: 50%; transform: translateY(-50%); color: #ffd700; font-size: 15px; }
+  .invitation-badge::after  { content: '✦'; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #ffd700; font-size: 15px; }
+
+  .invitation-te {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 15px; font-weight: 700;
+    color: #ffd700;
+    text-shadow: 0 0 12px rgba(255,215,0,0.4);
+    line-height: 1.65;
+  }
+  .invitation-sub { font-size: 14px; color: #ff9933; }
+
+  /* Date */
+  .date-badge {
+    display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, #12000a, #25000e);
+    border: 2px solid #c8941a; border-radius: 50px;
+    padding: 7px 24px; margin: 6px 0;
+  }
+  .date-text {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 15px; color: #ffd700;
+    text-shadow: 0 0 16px rgba(255,215,0,0.8);
+    font-weight: 700; letter-spacing: 1px;
+  }
+
+  /* Schedule */
+  .schedule-section {
+    width: 88%;
+    background: rgba(0,0,0,0.38);
+    border: 1px solid rgba(200,148,26,0.45);
+    border-radius: 8px;
+    padding: 12px 18px; margin: 6px 0;
+  }
+  .schedule-title {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 14px; font-weight: 700;
+    color: #ffd700; text-align: center;
+    margin-bottom: 10px; letter-spacing: 1px;
+    text-shadow: 0 0 12px rgba(255,215,0,0.4);
+    border-bottom: 1px solid rgba(200,148,26,0.35);
+    padding-bottom: 7px;
+  }
+  .schedule-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 10px;
+    border-bottom: 1px solid rgba(200,148,26,0.12);
+  }
+  .schedule-item:last-child { border-bottom: none; }
+  .schedule-item:nth-child(odd) { background: rgba(200,148,26,0.05); }
+
+  .event-name {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 14px; font-weight: 600;
+    color: #fff0cc;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .event-icon { font-size: 15px; }
+
+  .event-time {
+    font-family: 'Cinzel', serif;
+    font-size: 12px; color: #ffd700;
+    background: rgba(200,148,26,0.18);
+    border: 1px solid rgba(200,148,26,0.4);
+    padding: 3px 9px; border-radius: 20px;
+    white-space: nowrap;
+    text-shadow: 0 0 7px rgba(255,215,0,0.4);
+  }
+
+  .homam-highlight {
+    background: rgba(139,0,0,0.35) !important;
+    border: 1px solid rgba(255,100,0,0.25);
+    border-radius: 4px; margin: 2px 0;
+  }
+  .homam-highlight .event-name { color: #ffd700; font-size: 15px; }
+  .homam-highlight .event-time { background: rgba(255,80,0,0.28); border-color: rgba(255,80,0,0.5); color: #ff9933; }
+
+  /* Blessing */
+  .blessing-box {
+    width: 88%; text-align: center;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, rgba(100,0,0,0.28), rgba(40,0,10,0.45));
+    border-top: 1px solid rgba(200,148,26,0.45);
+    border-bottom: 1px solid rgba(200,148,26,0.45);
+    margin: 6px 0;
+  }
+  .blessing-te {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 14px; color: #ffe0a0; line-height: 1.8;
+  }
+  .blessing-en {
+    font-family: 'Cinzel', serif;
+    font-size: 11px; color: #c8a060;
+    letter-spacing: 1px; margin-top: 3px;
+  }
+
+  /* Footer */
+  .footer { text-align: center; margin: 4px 0 30px; }
+  .footer-label {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 13px; color: #ffd700;
+    text-shadow: 0 0 10px rgba(255,215,0,0.4);
+  }
+  .footer-committee-te {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 16px; font-weight: 700;
+    color: #ffd700; margin: 3px 0;
+    text-shadow: 0 0 14px rgba(255,215,0,0.5);
+  }
+  .footer-committee-en {
+    font-family: 'Cinzel', serif;
+    font-size: 11px; color: #ffed80;
+    letter-spacing: 2px; opacity: 0.8;
+  }
+  .footer-symbols { margin-top: 7px; font-size: 17px; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="om-bg" aria-hidden="true">
+    ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ
+    ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ
+    ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ ॐ
+  </div>
+
+  <svg class="mandala-bg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="250" cy="250" r="240" stroke="#ffd700" stroke-width="1"/>
+    <circle cx="250" cy="250" r="200" stroke="#ffd700" stroke-width="0.5"/>
+    <circle cx="250" cy="250" r="160" stroke="#ffd700" stroke-width="1"/>
+    <circle cx="250" cy="250" r="120" stroke="#ffd700" stroke-width="0.5"/>
+    <circle cx="250" cy="250" r="80"  stroke="#ffd700" stroke-width="1"/>
+    <circle cx="250" cy="250" r="40"  stroke="#ffd700" stroke-width="0.5"/>
+    <g stroke="#ffd700" stroke-width="0.6">
+      <line x1="250" y1="10"  x2="250" y2="490"/>
+      <line x1="10"  y1="250" x2="490" y2="250"/>
+      <line x1="74"  y1="74"  x2="426" y2="426"/>
+      <line x1="426" y1="74"  x2="74"  y2="426"/>
+      <line x1="162" y1="10"  x2="338" y2="490"/>
+      <line x1="338" y1="10"  x2="162" y2="490"/>
+      <line x1="10"  y1="162" x2="490" y2="338"/>
+      <line x1="10"  y1="338" x2="490" y2="162"/>
+    </g>
+    <g stroke="#ffd700" stroke-width="0.5" fill="none">
+      <ellipse cx="250" cy="130" rx="20" ry="40" transform="rotate(0   250 250)"/>
+      <ellipse cx="250" cy="130" rx="20" ry="40" transform="rotate(45  250 250)"/>
+      <ellipse cx="250" cy="130" rx="20" ry="40" transform="rotate(90  250 250)"/>
+      <ellipse cx="250" cy="130" rx="20" ry="40" transform="rotate(135 250 250)"/>
+      <ellipse cx="250" cy="130" rx="20" ry="40" transform="rotate(180 250 250)"/>
+      <ellipse cx="250" cy="130" rx="20" ry="40" transform="rotate(225 250 250)"/>
+      <ellipse cx="250" cy="130" rx="20" ry="40" transform="rotate(270 250 250)"/>
+      <ellipse cx="250" cy="130" rx="20" ry="40" transform="rotate(315 250 250)"/>
+    </g>
+  </svg>
+
+  <div class="gold-line gold-line-top"></div>
+  <div class="gold-line gold-line-bottom"></div>
+
+  <!-- Corners -->
+  <div class="corner corner-tl">
+    <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8,8 L8,75 Q8,102 35,102 L102,102" stroke="#c8941a" stroke-width="2" fill="none"/>
+      <path d="M18,18 L18,70 Q18,92 40,92 L92,92" stroke="#ffd700" stroke-width="1" fill="none"/>
+      <circle cx="8" cy="8" r="5" fill="#ffd700"/>
+      <text x="24" y="52" fill="#ffd700" font-size="20" opacity="0.85">ॐ</text>
+    </svg>
+  </div>
+  <div class="corner corner-tr">
+    <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8,8 L8,75 Q8,102 35,102 L102,102" stroke="#c8941a" stroke-width="2" fill="none"/>
+      <path d="M18,18 L18,70 Q18,92 40,92 L92,92" stroke="#ffd700" stroke-width="1" fill="none"/>
+      <circle cx="8" cy="8" r="5" fill="#ffd700"/>
+      <text x="24" y="52" fill="#ffd700" font-size="20" opacity="0.85">ॐ</text>
+    </svg>
+  </div>
+  <div class="corner corner-bl">
+    <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8,8 L8,75 Q8,102 35,102 L102,102" stroke="#c8941a" stroke-width="2" fill="none"/>
+      <path d="M18,18 L18,70 Q18,92 40,92 L92,92" stroke="#ffd700" stroke-width="1" fill="none"/>
+      <circle cx="8" cy="8" r="5" fill="#ffd700"/>
+      <text x="24" y="52" fill="#ffd700" font-size="18" opacity="0.85">🪔</text>
+    </svg>
+  </div>
+  <div class="corner corner-br">
+    <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8,8 L8,75 Q8,102 35,102 L102,102" stroke="#c8941a" stroke-width="2" fill="none"/>
+      <path d="M18,18 L18,70 Q18,92 40,92 L92,92" stroke="#ffd700" stroke-width="1" fill="none"/>
+      <circle cx="8" cy="8" r="5" fill="#ffd700"/>
+      <text x="24" y="52" fill="#ffd700" font-size="18" opacity="0.85">🪔</text>
+    </svg>
+  </div>
+
+  <div class="petal" style="left:4%;  animation-delay:0s;   animation-duration:7s;">🌸</div>
+  <div class="petal" style="left:14%; animation-delay:1.5s; animation-duration:9s;">🌺</div>
+  <div class="petal" style="left:80%; animation-delay:0.8s; animation-duration:8s;">🌸</div>
+  <div class="petal" style="left:91%; animation-delay:2.5s; animation-duration:6s;">🌼</div>
+  <div class="petal" style="left:46%; animation-delay:3s;   animation-duration:10s;">🌸</div>
+  <div class="petal" style="left:66%; animation-delay:1s;   animation-duration:7.5s;">🌺</div>
+
+  <div class="spark" style="top:38%; left:7%;  animation-delay:0s;"></div>
+  <div class="spark" style="top:58%; left:93%; animation-delay:1s;"></div>
+  <div class="spark" style="top:20%; left:50%; animation-delay:2s;"></div>
+  <div class="spark" style="top:72%; left:18%; animation-delay:0.5s;"></div>
+
+  <div class="content">
+
+    <div class="header-om">ॐ &nbsp; శ్రీ మాత్రే నమః &nbsp; ॐ</div>
+    <div class="diya-row">🪔🌺🪔🌺🪔🌺🪔🌺🪔</div>
+    <div class="divider"></div>
+
+    <div class="temple-name-te">శ్రీ శ్రీ శ్రీ అంకాలమ్మ తల్లి దేవస్థానం</div>
+    <div class="temple-location">Kambhalapadu</div>
+    <div class="divider"></div>
+
+    <!-- Divine SVG centerpiece (no photo) -->
+    <div class="divine-symbol">
+      <div class="aura"></div>
+      <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="120" cy="120" r="112" stroke="#c8941a" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <circle cx="120" cy="120" r="108" stroke="#ffd700" stroke-width="0.5" fill="none" opacity="0.4"/>
+        <g stroke="#ffd700" stroke-width="0.8" opacity="0.35">
+          <line x1="120" y1="8"   x2="120" y2="32"/>
+          <line x1="120" y1="208" x2="120" y2="232"/>
+          <line x1="8"   y1="120" x2="32"  y2="120"/>
+          <line x1="208" y1="120" x2="232" y2="120"/>
+          <line x1="28"  y1="28"  x2="46"  y2="46"/>
+          <line x1="212" y1="28"  x2="194" y2="46"/>
+          <line x1="28"  y1="212" x2="46"  y2="194"/>
+          <line x1="212" y1="212" x2="194" y2="194"/>
+        </g>
+        <g fill="none" stroke="#c8941a" stroke-width="1.2" opacity="0.6">
+          <ellipse cx="120" cy="68" rx="14" ry="28" transform="rotate(0   120 120)"/>
+          <ellipse cx="120" cy="68" rx="14" ry="28" transform="rotate(45  120 120)"/>
+          <ellipse cx="120" cy="68" rx="14" ry="28" transform="rotate(90  120 120)"/>
+          <ellipse cx="120" cy="68" rx="14" ry="28" transform="rotate(135 120 120)"/>
+          <ellipse cx="120" cy="68" rx="14" ry="28" transform="rotate(180 120 120)"/>
+          <ellipse cx="120" cy="68" rx="14" ry="28" transform="rotate(225 120 120)"/>
+          <ellipse cx="120" cy="68" rx="14" ry="28" transform="rotate(270 120 120)"/>
+          <ellipse cx="120" cy="68" rx="14" ry="28" transform="rotate(315 120 120)"/>
+        </g>
+        <g fill="rgba(200,148,26,0.12)" stroke="#ffd700" stroke-width="1" opacity="0.8">
+          <ellipse cx="120" cy="82" rx="10" ry="20" transform="rotate(0   120 120)"/>
+          <ellipse cx="120" cy="82" rx="10" ry="20" transform="rotate(60  120 120)"/>
+          <ellipse cx="120" cy="82" rx="10" ry="20" transform="rotate(120 120 120)"/>
+          <ellipse cx="120" cy="82" rx="10" ry="20" transform="rotate(180 120 120)"/>
+          <ellipse cx="120" cy="82" rx="10" ry="20" transform="rotate(240 120 120)"/>
+          <ellipse cx="120" cy="82" rx="10" ry="20" transform="rotate(300 120 120)"/>
+        </g>
+        <circle cx="120" cy="120" r="48" fill="rgba(100,0,0,0.55)" stroke="#ffd700" stroke-width="1.5"/>
+        <circle cx="120" cy="120" r="44" fill="none" stroke="#c8941a" stroke-width="0.7" stroke-dasharray="4,3"/>
+        <!-- Trishul -->
+        <g fill="#ffd700">
+          <rect x="118.5" y="96" width="3" height="48" rx="1"/>
+          <path d="M120,70 L114,96 L126,96 Z"/>
+          <path d="M108,76 L104,88 L113,92 L113,84 Z"/>
+          <path d="M132,76 L136,88 L127,92 L127,84 Z"/>
+          <ellipse cx="120" cy="148" rx="7" ry="3.5"/>
+        </g>
+        <text x="120" y="128" text-anchor="middle" dominant-baseline="middle"
+              font-size="20" fill="#ffd700" opacity="0.9" font-family="serif">ॐ</text>
+        <circle cx="120" cy="64" r="4" fill="#ffd700"/>
+        <polygon points="120,15 124,20 120,25 116,20" fill="#ffd700" opacity="0.7"/>
+        <polygon points="120,215 124,220 120,225 116,220" fill="#ffd700" opacity="0.7"/>
+        <polygon points="15,120 20,116 25,120 20,124" fill="#ffd700" opacity="0.7"/>
+        <polygon points="215,120 220,116 225,120 220,124" fill="#ffd700" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <div class="homam-visual">
+      <div class="flame-icon">🔥</div>
+      <div class="homam-label">
+        <div class="te">మహా చండీహోమం</div>
+        <div class="en">GRAND CHANDIHOMAM</div>
+      </div>
+      <div class="flame-icon">🔥</div>
+    </div>
+
+    <div class="invitation-badge">
+      <div class="invitation-te">
+        మహా వైభవంగా చండీహోమం నిర్వహణకు<br>
+        <span class="invitation-sub">మీకు సాదర స్వాగతం 🙏</span>
+      </div>
+    </div>
+
+    <div class="date-badge">
+      <span>📅</span>
+      <span class="date-text">29th March 2026 — Sunday</span>
+      <span>🪔</span>
+    </div>
+
+    <div class="schedule-section">
+      <div class="schedule-title">🕉️ కార్యక్రమ వివరాలు — Programme Schedule 🕉️</div>
+      <div class="schedule-item">
+        <div class="event-name"><span class="event-icon">🐘</span> గణపతి పూజ</div>
+        <div class="event-time">8:00 AM</div>
+      </div>
+      <div class="schedule-item">
+        <div class="event-name"><span class="event-icon">🌸</span> అమ్మవారి సారె</div>
+        <div class="event-time">8:30 AM</div>
+      </div>
+      <div class="schedule-item homam-highlight">
+        <div class="event-name"><span class="event-icon">🔥</span> చండీహోమం</div>
+        <div class="event-time">9:00 AM – 1:00 PM</div>
+      </div>
+      <div class="schedule-item">
+        <div class="event-name"><span class="event-icon">🪔</span> పంచహారతులు</div>
+        <div class="event-time">1:00 PM – 1:30 PM</div>
+      </div>
+      <div class="schedule-item">
+        <div class="event-name"><span class="event-icon">🍱</span> అన్నసంతర్పణ</div>
+        <div class="event-time">2:00 PM</div>
+      </div>
+      <div class="schedule-item">
+        <div class="event-name"><span class="event-icon">✨</span> పల్లకి సేవ</div>
+        <div class="event-time">7:00 PM – 9:00 PM</div>
+      </div>
+    </div>
+
+    <div class="blessing-box">
+      <div class="blessing-te">
+        🙏 భక్తులందరూ కుటుంబ సమేతంగా విచ్చేసి అమ్మవారి ఆశీస్సులు పొందగలరు 🙏
+      </div>
+      <div class="blessing-en">All devotees are cordially invited with their families</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="footer">
+      <div class="footer-label">ఆహ్వానితులు:</div>
+      <div class="footer-committee-te">దేవస్థానం కమిటీ సభ్యులు</div>
+      <div class="footer-committee-en">DEVASTHANAM COMMITTEE MEMBERS</div>
+      <div class="footer-symbols">🌸 🔱 🌸 🔱 🌸</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const fc = document.createElement('div');
+fc.className = 'fire-container';
+document.querySelector('.poster').appendChild(fc);
+for (let i = 0; i < 22; i++) {
+  const f = document.createElement('div');
+  f.className = 'flame';
+  const x = Math.random()*100, h = 16+Math.random()*55;
+  const del = Math.random()*3, dur = 1+Math.random()*1.5;
+  const col = Math.random()>0.5 ? 'rgba(255,140,0,0.55)' : 'rgba(255,50,0,0.45)';
+  f.style.cssText = `left:${x}%;height:${h}px;background:${col};animation-delay:${del}s;animation-duration:${dur}s;`;
+  fc.appendChild(f);
+}
+</script>
+</body>
+</html>

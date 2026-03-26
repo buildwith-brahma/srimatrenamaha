@@ -381,6 +381,23 @@
   user-select: none; /* prevent highlight */
   text-shadow: 0 0 8px rgba(255, 182, 193, 0.7); /* subtle glow */
 }
+
+  .divine-symbol {
+    position: relative;
+    width: 240px;
+    height: 240px;
+  }
+  .round-image {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Put below or above SVG as needed */
+  }
+
 </style>
 </head>
 <body>
@@ -478,7 +495,11 @@
     <div class="temple-location">కంభాలపాడు</div>
     <div class="divider"></div>
 
-    <!-- Divine SVG centerpiece (no photo) -->
+
+    <div class="divine-symbol">
+        <div class="aura"></div>
+        <img class="round-image" src="https://buildwith-brahma.github.io/srimatrenamaha/IMG-20260326-WA0011.jpg" alt="Sri Matre Namaha Image">
+        <!-- Divine SVG centerpiece (no photo) -->
     <div class="divine-symbol">
       <div class="aura"></div>
       <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
@@ -531,7 +552,8 @@
         <polygon points="215,120 220,116 225,120 220,124" fill="#ffd700" opacity="0.7"/>
       </svg>
     </div>
-
+       
+    </div>
     <div class="homam-visual">
       <div class="flame-icon">🔥</div>
       <div class="homam-label">
